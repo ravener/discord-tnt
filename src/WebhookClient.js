@@ -33,7 +33,7 @@ class WebhookClient {
 	sendMessage(msg) {
 		superagent
 		 .post(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
-		 .send(this.send(msg));
+		 .send(this.send(msg))
 		 .then(res => return)
 		 .catch(err => console.error(err));
 	}
