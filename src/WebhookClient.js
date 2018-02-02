@@ -10,7 +10,7 @@
   and the id.
 */
 const superagent = require("superagent");
-const Constants = require("./src/Constants.js");
+const Constants = require("./Constants.js");
 
 
 
