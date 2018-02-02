@@ -23,7 +23,7 @@ class WebhookClient {
 		this.ID = options.ID;
 	}
 	
-	function send(content) {
+	send(content) {
    if(typeof content === 'object') {
     return content;
   } else {
