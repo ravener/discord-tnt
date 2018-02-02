@@ -1,4 +1,4 @@
-const Constants = require("./constants.js");
+const Constants = require("./Constants.js");
 const WebSocket = require("./WebSockets/WebSocketConnection.js");
 const EventEmitter = require("events");
 const Errors = require("./DiscordErrors.js")
