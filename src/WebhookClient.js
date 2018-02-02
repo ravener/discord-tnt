@@ -41,14 +41,14 @@ class WebhookClient {
 	destroy() {
 		superagent
 		 .delete(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
-		 .then(res => return("Deleted webhook sucessfully"))
+		 .then(res => console.log("Deleted webhook sucessfully"))
 		 .catch(err => console.error(err));
 	}
 	setName(name) {
 		superagent
 		 .patch(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
 		 .send({username: name})
-		 .then(res => return(`Success, Name changed to ${name}`)).catch(err => console.error(err));
+		 .then(res => console.log(`Success, Name changed to ${name}`)).catch(err => console.error(err));
 	}
 }
 
