@@ -21,7 +21,7 @@ class Client extends EventEmitter {
  	 superagent
  	 .post(`https://discordapp.com/api/v${Constants.API_VERSION}/channels/${channel}/messages`)
  	 .set("Authorization", "Bot " + this.TOKEN)
- 	 .set("User-Agent", Constants.userAgent);
+ 	 .set("User-Agent", Constants.userAgent)
  	 .send({content: message})
  	 .then(res => {
  	 	 return;
