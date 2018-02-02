@@ -25,7 +25,7 @@ class WebhookClient {
 	
 	send(content) {
    if(typeof content === 'object') {
-    return {content};
+    return `{${content}}`;
   } else {
      return {content: content};
   }
