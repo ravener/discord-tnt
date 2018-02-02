@@ -5,10 +5,10 @@ soon to be improved.
 # Warning
 Lib is highly unstable and this readme links and things may not exist/work the readme is for future things. for now lib is under development, please open a pull request if you would like to contribute, this is mainly a practice and i can't gurantee a perfect lib but as i learn i'll be releasing new versions with Better things.
 
-• Easy to use
-• Covers most of discord api , Not yet tho
-• Active developement
-• Free and open to contribute/suggest a feature.
+ Easy to use
+ Covers most of discord api , Not yet tho
+ Active developement
+ Free and open to contribute/suggest a feature.
 
 # Installtion
 You can easy get the lib with npm, run:
@@ -17,7 +17,7 @@ npm i discord-tnt --save
 ```
 its not in npm right now at the time of writing this if you want the lib use
 ```
-npm i git://github.com/freetnt5852/DiscordTNT
+npm i git://github.com/freetnt5852/discord-tnt
 ```
 this requires you to have git.
 
