@@ -3,5 +3,5 @@ module.exports = {
 	version: require("../package.json").version,
 	WebSocket: require("./WebSockets/WebSocketConnection.js"),
 	WebhookClient: require("./WebhookClient.js"),
-	EmbedBuilder: require("./classes/EmbedBuilder.js")
+	EmbedBuilder: require("./Classes/EmbedBuilder.js")
 };
