@@ -11,7 +11,7 @@ module.exports.VERSION = require("../package.json").version;
 module.exports.userAgent = `DiscordBot (https://github.com/freetnt5852/discord-tnt, ${require('../package.json').version})`;
 
 // Gateway Op Codes
-module.exports.GatewayOpCodes {
+module.exports.GatewayOpCodes = {
 	EVENT_DISPATCH: 0, // Dispatches an event
 	HEARTBEAT: 1, // Used for ping checking
 	IDENTIFY: 2, // Used for client handshake
