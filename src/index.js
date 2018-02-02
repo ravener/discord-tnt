@@ -1,7 +1,7 @@
 module.exports = {
-	Client: require("./src/Client.js"),
-	version: require("./package.json").version,
-	WebSocket: require("./src/WebSockets/WebSocketConnection.js"),
-	WebhookClient: require("./src/WebhookClient.js"),
+	Client: require("./Client.js"),
+	version: require("../package.json").version,
+	WebSocket: require("./WebSockets/WebSocketConnection.js"),
+	WebhookClient: require("./WebhookClient.js"),
 	EmbedBuilder: require("./classes/EmbedBuilder.js")
 };
