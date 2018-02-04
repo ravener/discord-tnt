@@ -10,7 +10,7 @@
   and the id.
 */
 const superagent = require("superagent");
-const Constants = require("./Constants.js");
+const Constants = require("./src/Constants.js");
 
 
 
@@ -23,32 +23,30 @@ class WebhookClient {
 		this.ID = options.ID;
 	}
 	
-	send(content) {
+	function send(content) {
    if(typeof content === 'object') {
-    return `{${content}}`;
-  } else {
-     return {content: content};
-  }
+    return Object.assign({}, content);
+  } 
+    return {content: content};
 }
 	sendMessage(msg) {
 		superagent
 		 .post(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
 		 .send(this.send(msg))
-		 .then(res => console.log("Message Sent"))
 		 .catch(err => console.error(err));
 	}
 	/* destroys the webhook by deleting it */
 	destroy() {
 		superagent
 		 .delete(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
-		 .then(res => console.log("Deleted webhook sucessfully"))
+		 .then(res => return "Webhook Deleted Successfully")
 		 .catch(err => console.error(err));
 	}
 	setName(name) {
 		superagent
 		 .patch(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
-		 .send({username: name})
-		 .then(res => console.log(`Success, Name changed to ${name}`)).catch(err => console.error(err));
+		 .send({name: name})
+		 .then(res => return `Success, Name changed to ${name}`).catch(err => console.error(err));
 	}
 }
 
