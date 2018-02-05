@@ -12,23 +12,29 @@ class Client extends EventEmitter {
 		this.TOKEN = options.TOKEN;
 		if(!options.GAME) throw new Error("Game not specified");
 		this.GAME = options.GAME;
-		if(!options.STATUS) console.warn("No status set using default: online");
+		if(!options.STATUS) console.warn("[CLIENT] [WARN] No status set using default: online");
 		this.STATUS = options.STATUS || "online";
 		this.ws = null;
+		this.isConnected = false;
 }
  sendMessage(channel, message) {
  	if(message.length > 2000) throw new RangeError("Messages must not exceed 2000 characters");
  	 superagent
  	 .post(`https://discordapp.com/api/v${Constants.API_VERSION}/channels/${channel}/messages`)
  	 .set("Authorization", "Bot " + this.TOKEN)
- 	 .set("User-Agent", Constants.userAgent)
+ 	 .set("User-Agent", Constants.userAgent);
  	 .send({content: message})
  	 .then(res => {
  	 	 return;
  	 }).catch(err => console.error(err));
  }
 connect() {
+	try {
 		this.ws = new WebSocket(this);
+		this.isConnected = true;
+	} catch(e) {
+		console.error(`[CLIENT] [ERROR] ${e.stack}`);
+  	}
 	}
 }
  
