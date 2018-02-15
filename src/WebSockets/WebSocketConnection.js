@@ -85,7 +85,7 @@ class WebSocketConnection extends EventEmitter {
 } catch(err) {
 	  console.error(`[GATEWAY] [ERROR] ${err.etack}`);
  }
-}
+});
 this.ws.on('message', gatewayMsg => {
   resp = JSON.parse(gatewayMsg);
   const op = resp.op;
@@ -117,14 +117,13 @@ this.ws.on('message', gatewayMsg => {
   	this.sessionId = null;
   	console.log(`[GATEWAY] [ERROR] Invalid Session: ${resp}`);
  }
-});
 this.ws.on("close", (code, reason) => {
 	console.log(`[GATEWAY] [CLOSE] Code: ${code}, Reason: ${reason}.`);
 });
 this.ws.on("error", err => {
 	console.error(`[GATEWAY] [ERROR] ${err}`);
   });
- }
+ });
  disconnect() {
  	this.ws.close();
  }
