@@ -82,7 +82,7 @@ class WebSocketConnection extends EventEmitter {
  	 this.ws.on('open', () => {
     	try { 
      this.send(Constants.GatewayOpCodes.IDENTIFY, this.identify());
-     console.log(`[GATEWAY] [EVENT] Authenticated using token: ${this.client.token}`);
+     console.log(`[GATEWAY] [EVENT] Authenticated using token: ${this.client.TOKEN}`);
 } catch(err) {
 	  console.error(`[GATEWAY] [ERROR] ${err.etack}`);
  }
