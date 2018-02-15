@@ -79,7 +79,7 @@ class WebSocketConnection extends EventEmitter {
 // event handling for websocket messages, more soon tm
  registerEventListeners() {
  	
- 	 this.ws.on('open', function open() {
+ 	 this.ws.on('open', () => {
     	try { 
      this.send(Constants.GatewayOpCodes.IDENTIFY, this.identify());
      console.log(`[GATEWAY] [EVENT] Authenticated using token: ${this.client.token}`);
@@ -88,15 +88,13 @@ class WebSocketConnection extends EventEmitter {
  }
 });
 this.ws.on('message', gatewayMsg => {
-  const resp = JSON.parse(gatewayMsg);
-  const op = resp.op;
-  const type = resp.t;
-  const seq = resp.s;
-  const data = resp.d;
+  let resp = JSON.parse(gatewayMsg);
+  let op = resp.op;
+  let type = resp.t;
+  let seq = resp.s;
+  let data = resp.d;
   
-  if(seq) {
-  	this.lastEvent = seq;
-  }
+  if(seq) this.lastEvent = seq;
   if(op === Constants.GatewayOpCodes.HELLO && data.heatbeat_interval) {
   	console.log(`[GATEWAY] [EVENT] Hello event, heartbeat interval: ${data.heartbeat_interval} ms`);
   	this.heartbeat(data.heartbeat_interval);
