@@ -38,3 +38,4 @@ connect() {
 	}
 }
  
+module.exports = Client;
