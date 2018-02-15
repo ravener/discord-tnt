@@ -19,13 +19,13 @@ class WebSocketConnection extends EventEmitter {
 	  this.registerEventListeners();
 		console.log("Connected to discord gateway")
 	} catch(e) {
-			console.error(e);
+			console.error(`[GATEWAY] [ERROR] Connection Failed: ${e}`);
 		}
 	}
 	
  send(op, d) {
  	 this.ws.send(JSON.stringify({op, d}));
- } // so i can access ws sending easier way and also from client.js
+ } // so i can access ws sending easier way and also from client.js or anywhere.
 
 // payload for identifying
  identify() {
@@ -60,24 +60,32 @@ class WebSocketConnection extends EventEmitter {
 	 seq: this.lastEvent || null
 	}
 };
-// payload for hearbeating
-  heartbeat() {
-   return lastEvent || null
+
+  singleHeartbeat() {
+   this.send(Constants.GatewayOpCodes.HEARTBEAT, this.lastEvent);
 };
 
-// when websocket connected succesfully.
-this.ws.on('open', function open() {
-	try { 
-  this.send(Constants.GatewayOpCodes.IDENTIFY, this.identify());
-  console.log(`[GATEWAY] [EVENT] Authenticated using token: ${this.client.token}`);
-} catch(err) {
-	console.error(`[GATEWAY] [ERROR] ${err.etack}`);
- }
+ heartbeat(interval) {
+	setInterval(() => {
+		this.ws.send(Constants.GatewayOpCodes.HEARTBEAT, this.lastEvent);
+		console.log(`[GATEWAY] [EVENT] Sending heartbeat at sequence ${this.lastEvent}`);
+	}, interval - 2000); // send heartbeat 2 seconds earlier just incase.
 }
+
+
   
 
 // event handling for websocket messages, more soon tm
  registerEventListeners() {
+ 	
+ 	 this.ws.on('open', function open() {
+    	try { 
+     this.send(Constants.GatewayOpCodes.IDENTIFY, this.identify());
+     console.log(`[GATEWAY] [EVENT] Authenticated using token: ${this.client.token}`);
+} catch(err) {
+	  console.error(`[GATEWAY] [ERROR] ${err.etack}`);
+ }
+}
 this.ws.on('message', gatewayMsg => {
   resp = JSON.parse(gatewayMsg);
   const op = resp.op;
@@ -90,11 +98,9 @@ this.ws.on('message', gatewayMsg => {
   }
   if(op === Constants.GatewayOpCodes.HELLO && data.heatbeat_interval) {
   	console.log(`[GATEWAY] [EVENT] Hello event, heartbeat interval: ${data.heartbeat_interval} ms`);
-  	setInterval(() => {
-  		this.send(1, this.heartbeat());
-  	}, data.heartbeat_interval - 2000); // send heartbeat 2 seconds earlier just incase.
+  	this.heartbeat(data.heartbeat_interval);
   }
-  if(type === "READY" && data.session_id) {
+  if(op === Constants.GatewayOpCodes.EVENT_DISPATCH && type === "READY" && data.session_id) {
   	this.sessionId = data.session_id;
   	console.log(`[GATEWAY] [EVENT] Ready session ID: ${data.session_id}`);
   	this.client.emit("ready", data); 
@@ -103,7 +109,7 @@ this.ws.on('message', gatewayMsg => {
   	console.log("[GATEWAY] [EVENT] Heartbeat Acknowledged")
   }
   
-  if(type === "MESSAGE_CREATE" && data.content) {
+  if(op === Constants.GatewayOpCodes.EVENT_DISPATCH && type === "MESSAGE_CREATE" && data.content) {
   	this.client.emit("messageCreate", data);
   }
   if(op === Constants.GatewayOpCodes.INVALID_SESSION) {
@@ -118,6 +124,9 @@ this.ws.on("close", (code, reason) => {
 this.ws.on("error", err => {
 	console.error(`[GATEWAY] [ERROR] ${err}`);
   });
+ }
+ disconnect() {
+ 	this.ws.close();
  }
 }
 
