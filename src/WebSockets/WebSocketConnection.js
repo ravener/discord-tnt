@@ -95,7 +95,7 @@ this.ws.on('message', gatewayMsg => {
   let data = resp.d;
   
   if(seq) this.lastEvent = seq;
-  if(op === Constants.GatewayOpCodes.HELLO && data.heatbeat_interval) {
+  if(op === Constants.GatewayOpCodes.HELLO && data.heartbeat_interval) {
   	console.log(`[GATEWAY] [EVENT] Hello event, heartbeat interval: ${data.heartbeat_interval} ms`);
   	this.heartbeat(data.heartbeat_interval);
   }
