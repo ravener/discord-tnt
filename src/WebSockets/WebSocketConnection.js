@@ -7,6 +7,7 @@ const EventEmitter = require("events");
 
 class WebSocketConnection extends EventEmitter {
 	constructor(client) {
+                super();
 		this.client = client;
 		this.lastEvent = null;
 		this.sessionId = null;
