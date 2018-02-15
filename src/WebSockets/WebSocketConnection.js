@@ -68,7 +68,7 @@ class WebSocketConnection extends EventEmitter {
 
  heartbeat(interval) {
 	setInterval(() => {
-		this.ws.send(Constants.GatewayOpCodes.HEARTBEAT, this.lastEvent);
+		this.send(Constants.GatewayOpCodes.HEARTBEAT, this.lastEvent);
 		console.log(`[GATEWAY] [EVENT] Sending heartbeat at sequence ${this.lastEvent}`);
 	}, interval - 2000); // send heartbeat 2 seconds earlier just incase.
 }
