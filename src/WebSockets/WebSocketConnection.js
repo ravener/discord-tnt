@@ -88,7 +88,7 @@ class WebSocketConnection extends EventEmitter {
  }
 });
 this.ws.on('message', gatewayMsg => {
-  resp = JSON.parse(gatewayMsg);
+  const resp = JSON.parse(gatewayMsg);
   const op = resp.op;
   const type = resp.t;
   const seq = resp.s;
