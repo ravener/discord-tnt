@@ -116,6 +116,9 @@ this.ws.on('message', gatewayMsg => {
   	this.sessionId = null;
   	console.log(`[GATEWAY] [ERROR] Invalid Session: ${resp}`);
  }
+ if(op === Constants.GatewayOpCodes.EVENT_DISPATCH && type === "GUILD_CREATE") {
+	 this.client.guilds.set(data.id, data)
+     }
 });
 this.ws.on("close", (code, reason) => {
 	console.log(`[GATEWAY] [CLOSE] Code: ${code}, Reason: ${reason}.`);
