@@ -16,6 +16,7 @@ class Client extends EventEmitter {
 		this.STATUS = options.STATUS || "online";
 		this.ws = null;
 		this.isConnected = false;
+                this.guilds = new Map();
 }
  sendMessage(channel, message) {
  	if(message.length > 2000) throw new RangeError("Messages must not exceed 2000 characters");
@@ -25,7 +26,7 @@ class Client extends EventEmitter {
  	 .set("User-Agent", Constants.userAgent)
  	 .send({content: message})
  	 .then(res => {
- 	 	 return;
+ 	 	 return res.body;
  	 }).catch(err => console.error(err));
  }
 connect() {
@@ -35,7 +36,7 @@ connect() {
 	} catch(e) {
 		console.error(`[CLIENT] [ERROR] ${e.stack}`);
   	}
-	}
+    }
 }
  
 module.exports = Client;
