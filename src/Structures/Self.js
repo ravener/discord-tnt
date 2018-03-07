@@ -87,3 +87,5 @@ class Self {
   	});
   }
 }
+
+module.exports = Self;

@@ -10,7 +10,7 @@
     "opts": {
     	 "readme":"README.md",
     	 "package":"package.json",
-    	 "destination":"./docs/",
+    	 "destination":"./docs/"
     },
     "sourceType": "module",
     "tags": {
