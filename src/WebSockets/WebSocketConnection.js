@@ -224,7 +224,7 @@ this.ws.on('message', gatewayMsg => {
   if(op === Constants.GatewayOpCodes.EVENT_DISPATCH && type === "READY" && data.session_id) {
   	this.sessionId = data.session_id;
   	if(this.client.DEBUG) console.log(`[GATEWAY] [EVENT] Ready session ID: ${data.session_id}`);
-  	this.client.self = new Self(data);
+  	this.client.self = new Self(this.client, data);
   	this.triggerReady();
   }
   if(op === 11) {

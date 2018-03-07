@@ -28,25 +28,25 @@ class Self {
 		* The bot's username.
 		* @type {String}
 		*/
-		this.username = data.username;
+		this.username = data.user.username;
 		
 		/**
 		* The bot's 4 digit disciminator.
 		* @type {String}
 		*/
-		this.discriminator = data.discriminator;
+		this.discriminator = data.user.discriminator;
 		
 		/**
 		* The bot's Snowflake ID.
 		* @type {String}
 		*/
-		this.id = data.id;
+		this.id = data.user.id;
 		
 		/**
 		* The bot's avatar hash.
 		* @type {String}
 		*/
-		this.avatar = data.avatar || null;
+		this.avatar = data.user.avatar || null;
 		// possible chance the bot doesn't have an avatar.
 		
 		/**
@@ -61,7 +61,7 @@ class Self {
 	* @param {String} message - The message to show in presence.
 	* @param {Number} type - The bot's presence type, can be a number between 0 and 3.
 	*/
-  setPresence(message, type) {
+  setPresence(message, type=0) {
   	if(!parseInt(type)) throw new Error("Type must be a number between 0 and 3");
   	if(parseInt(type) > 3) throw new Error("Type must be a number between 0 and 3");
   	this.client.ws.send(3, {
