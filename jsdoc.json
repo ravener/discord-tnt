@@ -1,0 +1,24 @@
+{
+    "plugins": [],
+    "recurseDepth": 10,
+    "source": {
+        "include":["src", "src/WebSockets", "src/Classes", "src/utils", "src/structures"],
+        "exclude": "src/CommandClient.js",
+        "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "opts": {
+    	 "readme":"README.md",
+    	 "package":"package.json",
+    	 "destination":"./docs/",
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}
