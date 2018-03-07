@@ -1,19 +1,18 @@
-/*
-  Base class for interacting
-  with discord webhooks
-  this class isn't fully
-  complete, but is meant
-  to be usable without
-  authentication with
-  a bot account, all you
-  need is webhook token
-  and the id.
-*/
+
 const superagent = require("superagent");
 const Constants = require("./Constants.js");
 
 
-
+/**
+* Base class for interacting with discord webhooks
+* this class isn't fully complete, but is meant
+* to be usable without authentication with
+* a bot account, all you need is webhook token and the id.
+* @constructor
+* @param {Object} options - The options for the client.
+* @param {String} options.TOKEN - The webhook's TOKEN.
+* @param {String} options.ID - The webhook's ID
+*/
 class WebhookClient {
 
 	constructor(options = {}) {
@@ -23,18 +22,20 @@ class WebhookClient {
 		this.ID = options.ID;
 	}
 	
-	send(content) {
-   if(typeof content === 'object') {
-    return Object.assign({}, content);
-  } 
-    return {content: content};
-}
+	/**
+	* Send a text message with the webhook.
+	* @param {String} msg - The message to send.
+	*/
 	sendMessage(msg) {
+		return new Promise((resolve, reject) => {
 		superagent
 		 .post(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
-		 .send(this.send(msg))
-		 .catch(err => console.error(err));
+		 .send({content: msg})
+		 .then(resolve)
+		 .catch(err => reject(err));
+		});
 	}
+	
 	/* destroys the webhook by deleting it */
 	destroy() {
 		superagent
@@ -42,10 +43,13 @@ class WebhookClient {
 		 .catch(err => console.error(err));
 	}
 	setName(name) {
+		return new Promise((resolve, reject) => {
 		superagent
 		 .patch(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
 		 .send({name: name})
-		 .catch(err => console.error(err));
+		 .then(res => resolve(res))
+		 .catch(err => reject(err));
+		});
 	}
 }
 
