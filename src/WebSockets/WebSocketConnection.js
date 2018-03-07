@@ -2,6 +2,7 @@ const Errors = require("../DiscordErrors.js");
 const Constants = require("../Constants.js");
 const WebSocket = require("ws");
 const EventEmitter = require("events");
+const Self = require("../Structures/Self.js");
 
 /**
 * Base class for websocket connection
