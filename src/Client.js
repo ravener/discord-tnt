@@ -3,7 +3,6 @@ const WebSocket = require("./WebSockets/WebSocketConnection.js");
 const EventEmitter = require("events");
 const Errors = require("./DiscordErrors.js")
 const superagent = require("superagent");
-const request = require("./RequestHandlers/discord-tnt-http.js");
 const Collection = require("./utils/Collection.js");
 const RestMethods = require("./RestMethods.js");
 
