@@ -145,7 +145,7 @@ class WebSocketConnection extends EventEmitter {
   * @returns {Boolean}
   */
   checkIfReady() {
-  	unavailableGuilds = 0;
+  	let unavailableGuilds = 0;
   	for(const x of this.client.guilds.values()) {
   		if(x.unavailble) unavailableGuilds++
   	}
