@@ -99,14 +99,16 @@ class Client extends EventEmitter {
  */
  sendMessage(channel, message) {
  	if(message.length > 2000) throw new RangeError("Messages must not exceed 2000 characters");
+ 	 return new Promise((resolve, reject) => {
  	 superagent
  	 .post(`https://discordapp.com/api/v${Constants.API_VERSION}/channels/${channel}/messages`)
  	 .set("Authorization", "Bot " + this.TOKEN)
  	 .set("User-Agent", Constants.userAgent)
  	 .send({content: message})
  	 .then(res => {
- 	 	 return res.body;
- 	 }).catch(err => console.error(err));
+ 	 	 return resolve(res.body);
+ 	 }).catch(err => reject(err));
+ 	});
  }
  
  /**
@@ -145,7 +147,7 @@ connect() {
  */
  get ping() {
  	if(!this.ws) throw new Error("Attemp to check ping while not connected to websocket.");
- 	 return this.ws.lastHeartbeatAck - this.ws.lastHeartbeatSend;
+ 	 return this.ws.lastHeartbeatAck - this.ws.lastHeartbeatSent;
  }
  
  /**

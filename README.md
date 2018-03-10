@@ -1,6 +1,6 @@
 # DiscordTNT
 Node.js Discord Library.
-Wrote using WS lib for websocket connections and superagent lib for http requests.
+Wrote using WS library for websocket connections and superagent library for http requests.
 soon to be improved.
 # Warning
 Lib is highly unstable and this readme links and things may not exist/work the readme is for future things. for now lib is under development, please open a pull request if you would like to contribute, this is mainly a practice and i can't gurantee a perfect lib but as i learn i'll be releasing new versions with Better things.
@@ -10,19 +10,16 @@ Lib is highly unstable and this readme links and things may not exist/work the r
 - Active developement
 - Free and open to contribute/suggest a feature.
 
-# Installtion
-You can easy get the lib with npm, run:
-```
-npm i discord-tnt --save
-```
-its not in npm right now at the time of writing this if you want the lib use
+# Installation
+Run this in a command prompt in your project's directory
 ```
 npm i freetnt5852/discord-tnt --save
 ```
 this requires you to have git.
+will be in npm later once confirmed to be stable.
 
 # Example usage
-Here's a basic usage of the lib:
+Here's a basic usage of the library:
 ```js
 const DiscordTNT = require("discord-tnt");
 const client = new DiscordTNT.Client({
@@ -52,12 +49,13 @@ client.connect();
 
 
 # Useful links
-- Documentation: Coming soon.
+- [Documentation](https://freetnt5852.github.io/discord-tnt)
 - [Discord Server](https://discord.gg/CkY2dpr)
-- More examples: Coming soon.
+- [More Examples](https://github.com/freetnt5852/discord-tnt/blob/master/examples)
 
 # License
 Released under MIT License.
+see [License](https://github.com/freetnt5852/discord-tnt/blob/master/LICENSE) file for more info
 
 # Contributing
-If you want to contribute please send a pull request with your changes and describe the changes, open an issue if you found a bug or suggesting an idea. Read CONTRIBUTING.md file for more info about contributing.
+If you want to contribute please send a pull request with your changes and describe the changes, open an issue if you found a bug or suggesting an idea. Read [CONTRIBUTING.md](https://github.com/freetnt5852/discord-tnt/blob/master/.github/CONTRIBUTING.md) file for more info about contributing.

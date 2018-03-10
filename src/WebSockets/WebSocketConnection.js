@@ -61,15 +61,16 @@ class WebSocketConnection extends EventEmitter {
 		try {
 		 this.ws = new WebSocket("wss://gateway.discord.gg?encoding=json&v=6");
 		 this.client.isConnected = true;
-	  this.registerEventListeners();
-		console.log("Connected to discord gateway")
+		 this.client.ws = this.ws;
+		 this.registerEventListeners();
+		 if(this.client.DEBUG) console.log("Connected to discord gateway");
 	} catch(e) {
 			console.error(`[GATEWAY] [ERROR] Connection Failed: ${e}`);
 		}
 	}
 
  /**
- * Send a json payload to discord websocket
+ * Send a json payload to discord websocket.
  * @param {Number} op - The OP code for this payload.
  * @param {String|Object} d - The data to send can be a simple string or a complex object.
  */
