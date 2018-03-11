@@ -5,6 +5,7 @@
 - Some quick fixes in README.
 - New example in [examples](https://github.com/freetnt5852/discord-tnt/blob/master/examples) directory.
 - Changelog will now use Markdown syntax for better style.
+- Fix avatar URL for Client#self for default avatars.
 
 v1.5.0
 Breaking changes!

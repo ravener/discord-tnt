@@ -53,7 +53,7 @@ class Self {
 		* The bot's avatar URL.
 		* @type {String}
 		*/
-		this.avatarURL = `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.png?size=2048`;
+		this.avatarURL = this.avatar ? `https://cdn.discordapp.com/avatars/${this.id}/${this.avatar}.png?size=2048` : `https://cdn.discordapp.com/embed/avatars/${this.discriminator % 5}`;
 	}
 	
 	/**
