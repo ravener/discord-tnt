@@ -4,5 +4,6 @@ module.exports = {
 	   WebSocket: require("./WebSockets/WebSocketConnection.js"),
 	   WebhookClient: require("./WebhookClient.js"),
 	   EmbedBuilder: require("./Classes/EmbedBuilder.js"),
-	   Snowflake: require("./utils/Snowflake.js")
+	   Snowflake: require("./utils/Snowflake.js"),
+	   Collection: require("./utils/Collection.js")
 };
