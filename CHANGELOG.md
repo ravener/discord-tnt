@@ -1,3 +1,12 @@
+**v1.1.0**
+- Wonder if i can downgrade, since i did versioning really wrong way, like increment it a lot.
+
+**v1.5.2**
+- DiscordTNT#Collection is now usable for everyone.
+- uWs is now an optional dependency, it could do better performance on websocket connections however its optional. `npm i uws --save`
+- New event Client#mention, emitted when someone mentions/pings your bot, the arguments from it is a message object which is same as Client#messageCreate
+
+
 **v1.5.1**
 - Fix Client#ping typo.
 - Fix Client#ws disappearing randomly.

@@ -1,8 +1,14 @@
 const Errors = require("../DiscordErrors.js");
 const Constants = require("../Constants.js");
-const WebSocket = require("ws");
 const EventEmitter = require("events");
 const Self = require("../Structures/Self.js");
+const WebSocket = (() => {
+	try {
+		return require("uws");
+	} catch(e) {
+		return require("ws");
+	}
+})();
 
 /**
 * Base class for websocket connection
@@ -241,6 +247,13 @@ this.ws.on('message', gatewayMsg => {
    * @param {Object} message - The message object from discord.
    */
   	this.client.emit("messageCreate", data);
+  	
+  	/**
+  	* Emitted when the message content mentions the bot.
+  	* @event Client#mention
+  	* @param {Object} message - The message object, same as one from Client#messageCreate
+  	*/
+  	if(data.content.includes(`<@${this.client.self.id}>`)) this.client.emit("mention", data);
   }
   if(op === Constants.GatewayOpCodes.INVALID_SESSION) {
   	this.lastEvent = null;

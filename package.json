@@ -1,6 +1,6 @@
 {
   "name": "discord-tnt",
-  "version": "1.5.1",
+  "version": "1.1.0",
   "description": "A Simple NodeJS Discord Library",
   "main": "./src/index.js",
   "scripts": {
