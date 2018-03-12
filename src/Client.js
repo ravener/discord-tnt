@@ -14,6 +14,7 @@ const RestMethods = require("./RestMethods.js");
 * @param {String} options.GAME - The playing status for the bot
 * @param {String} options.STATUS=online - Status for the bot can be online idle dnd offline invisible.
 * @param {Boolean} options.afk=false - Wether the client is afk or not.
+* @param {Number} options.type=0 - Type for game status.
 * @param {Boolean} options.DEBUG=false - Wether to enable debug or not, debug will log lot of events and information, it is recommended to turn it on if you would like to report bugs.
 */
 class Client extends EventEmitter {
@@ -94,6 +95,12 @@ class Client extends EventEmitter {
    * @type {Boolean}
    */
    this.afk = options.afk || false;
+   
+   /**
+   * Type used for game, can change with setPresence method
+   * @type {Number}
+   */
+   this.gameType = options.type || 0;
 }
 
  /**

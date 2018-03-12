@@ -249,7 +249,9 @@ this.ws.on('message', gatewayMsg => {
   if(op === Constants.GatewayOpCodes.INVALID_SESSION) {
   	this.lastEvent = null;
   	this.sessionId = null;
-  	if(this.client.DEBUG) console.log(`[GATEWAY] [ERROR] Invalid Session: ${resp}`);
+  	if(this.client.DEBUG) console.log(`[GATEWAY] [ERROR] Invalid Session: \n${JSON.stringify(resp, null, 2)}`);
+  	this.disconnect();
+  	this.connect();
  }
  if(op === Constants.GatewayOpCodes.EVENT_DISPATCH && type === "GUILD_CREATE") {
 	 this.client.guilds.set(data.id, data);

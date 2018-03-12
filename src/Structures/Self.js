@@ -72,6 +72,8 @@ class Self {
   		since: Date.now(),
   		afk: this.client.afk
   	});
+  	this.client.GAME = message;
+  	this.client.gameType = type;
   }
   
   /**
@@ -85,8 +87,11 @@ class Self {
   	this.client.ws.send(3, {
   		status:status.toLowerCase(),
   		afk: Boolean(afk),
-  		since: Date.now()
+  		since: Date.now(),
+  		game: this.client.game ? {name: this.client.game, type: this.client.gameType} : null
   	});
+  	this.client.status = status.toLowerCase();
+  	this.client.afk = Boolean(afk);
   }
 }
 

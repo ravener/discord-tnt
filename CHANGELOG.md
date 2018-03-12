@@ -1,3 +1,7 @@
+**v1.1.2**
+- Fix websocket reconnection, hopefully now it truely handles disconnects, mostly the error with invalid session.
+- Fixed Client#self.setStatus (Hopefully)
+
 **v1.1.1**
 - Remove support for uWs it won't even connect properly for some reason.
 - Hopefully fixed Client#self.setPresence and setStatus.
