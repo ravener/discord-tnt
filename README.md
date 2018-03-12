@@ -22,18 +22,15 @@ will be in npm later once confirmed to be stable.
 Here's a basic usage of the library:
 ```js
 const DiscordTNT = require("discord-tnt");
-const client = new DiscordTNT.Client({
-	TOKEN: "Your bot token",
-	GAME: "set a playing status",
-	STATUS:"online" 
-});
-// create a client instance and set token, game and status
-// available options for status: online, dnd, idle, invisible
+// create a client instance.
+const client = new DiscordTNT.Client({TOKEN:"Your Bot TOKEN"}); // Look at docs for other options the client accepts.
+
 const prefix = "+" // many ways to set prefix pick your way
 
-client.on('ready', ready => {
+client.on('ready', () => {
 	console.log("Bot is online!");
-	console.log(`Logged in as ${ready.user.username}`);
+	console.log(`Logged in as ${client.self.username}`);
+	client.setPresence("with NodeJS");
 }); // ready event
 
 

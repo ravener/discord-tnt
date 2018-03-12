@@ -3,15 +3,21 @@
 const DiscordTNT = require("discord-tnt"); // require it
 const client = new DiscordTNT.Client({ // create a client
 	TOKEN:"Your Bot Token",
-	GAME:"Some game",
-	STATUS:"online",
 	DEBUG:true
 });
 const prefix = "+" // pick a command prefix
 
+// On Ready.
 client.on("ready", () => {
 	console.log(`Logged in as ${client.self.username}`);
-}); // on ready
+	client.self.setPresence("You", 3) // set a presence
+	// types can be from 0 to 3,
+	// 0 - Playing, 1 - Streaming, 2 - Listening, 3 - Wathing
+	// in this case we are setting it to "Watching You"
+	
+	client.setStatus("dnd");
+	// Set status to Do Not Disturb.
+});
 
 client.on("messageCreate", message => { // on message
 	if(message.author.bot) return; // ignore bots
@@ -22,6 +28,7 @@ client.on("messageCreate", message => { // on message
 	const m = message.channel_id;
 	// just a shortcut to channel id, trust me this makes
 	// it more comfortable to send Messages.
+	// an update is planned to make it even more comfortable.
 	if(command === "ping") {
 		client.sendMessage(`Pong! WebSocket Latency: ${client.ping}`); // client.ping is null at first time login
 		// so don't panic if it didn't work, will work after
@@ -40,4 +47,10 @@ client.on("messageCreate", message => { // on message
 	} else return;
 });
 
+// Mention listener gets triggered when someone @mention the bot.
+client.on("mention", msg => {
+	client.sendMessage(msg.channel_id, "Prefix is `+`");
+});
+
+// Connect the bot
 client.connect();

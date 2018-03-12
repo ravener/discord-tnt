@@ -13,6 +13,7 @@ const RestMethods = require("./RestMethods.js");
 * @param {String} options.TOKEN - The bot's token
 * @param {String} options.GAME - The playing status for the bot
 * @param {String} options.STATUS=online - Status for the bot can be online idle dnd offline invisible.
+* @param {Boolean} options.afk=false - Wether the client is afk or not.
 * @param {Boolean} options.DEBUG=false - Wether to enable debug or not, debug will log lot of events and information, it is recommended to turn it on if you would like to report bugs.
 */
 class Client extends EventEmitter {
@@ -25,14 +26,12 @@ class Client extends EventEmitter {
 		* @type {String}
 		*/
 		this.TOKEN = options.TOKEN;
-		if(!options.GAME) throw new Error("Game not specified");
 		
 		/**
-		* The bot's Playing status game.
+		* The bot's playing status.
 		* @type {String}
 		*/
-		this.GAME = options.GAME;
-		if(options.DEBUG && !options.STATUS) console.warn("[CLIENT] [WARN] No status set using default: online");
+		this.game = options.GAME || null;
 		
 		/**
 		* The bot's status.
@@ -89,6 +88,12 @@ class Client extends EventEmitter {
    * @type {Self}
    */
    this.self = null;
+   
+   /**
+   * Wether bot is afk or not
+   * @type {Boolean}
+   */
+   this.afk = options.afk || false;
 }
 
  /**
@@ -134,6 +139,7 @@ class Client extends EventEmitter {
 * @type {WebSocketConnection}
 */
 connect() {
+	if(this.isConnected) throw new Error("Attempt to connect while already connected.");
 	try {
 		this.ws = new WebSocket(this);
 	} catch(e) {

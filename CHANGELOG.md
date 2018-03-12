@@ -1,3 +1,9 @@
+**v1.1.1**
+- Remove support for uWs it won't even connect properly for some reason.
+- Hopefully fixed Client#self.setPresence and setStatus.
+- Game and status is now optional from client options, can be set through Client#self.setPresence and Client#seld.setStatus
+- Improve examples to better fit the new versions.
+
 **v1.1.0**
 - Wonder if i can downgrade, since i did versioning really wrong way, like increment it a lot.
 

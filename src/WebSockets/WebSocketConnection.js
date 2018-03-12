@@ -2,13 +2,7 @@ const Errors = require("../DiscordErrors.js");
 const Constants = require("../Constants.js");
 const EventEmitter = require("events");
 const Self = require("../Structures/Self.js");
-const WebSocket = (() => {
-	try {
-		return require("uws");
-	} catch(e) {
-		return require("ws");
-	}
-})();
+const WebSocket = require("ws");
 
 /**
 * Base class for websocket connection
@@ -99,13 +93,10 @@ class WebSocketConnection extends EventEmitter {
                 'compress':false, 
                 'large_threshold': 250,
                 "presence": {
-                    "game": {
-                        "name": this.client.GAME,
-                        "type": 0
-                    },
+                    "game": this.client.game ? {name: this.client.game, type: 0} : null,
                     "status": this.client.STATUS,
                     "since": Date.now(),
-                    "afk": false
+                    "afk": Boolean(this.client.afk)
                     }
                 }
                

@@ -62,13 +62,15 @@ class Self {
 	* @param {Number} type - The bot's presence type, can be a number between 0 and 3.
 	*/
   setPresence(message, type=0) {
-  	if(!parseInt(type)) throw new Error("Type must be a number between 0 and 3");
   	if(parseInt(type) > 3) throw new Error("Type must be a number between 0 and 3");
   	this.client.ws.send(3, {
   		game: {
   			name: message,
   			type: parseInt(type)
-  		}
+  		},
+  		status: this.client.STATUS,
+  		since: Date.now(),
+  		afk: this.client.afk;
   	});
   }
   
@@ -79,10 +81,10 @@ class Self {
   */
   setStatus(status, afk=false) {
   	let allowed = ['online', 'offline','idle','dnd','invisible'];
-  	if(!allowed.includes(status.toLowerCase)) throw new Error("Status can only be online, idle, dnd, offline and invisible");
+  	if(!allowed.includes(status.toLowerCase())) throw new Error("Status can only be online, idle, dnd, offline and invisible");
   	this.client.ws.send(3, {
   		status:status.toLowerCase(),
-  		afk: afk,
+  		afk: Boolean(afk),
   		since: Date.now()
   	});
   }
