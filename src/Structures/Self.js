@@ -70,7 +70,7 @@ class Self {
   		},
   		status: this.client.STATUS,
   		since: Date.now(),
-  		afk: this.client.afk;
+  		afk: this.client.afk
   	});
   }
   
