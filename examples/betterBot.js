@@ -44,7 +44,7 @@ client.on("messageCreate", message => { // on message
 		}
 	} else if(command === "say") {
 		client.sendMessage(m, args.join(" "));
-	} else return;
+	}
 });
 
 // Mention listener gets triggered when someone @mention the bot.

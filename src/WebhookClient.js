@@ -36,12 +36,22 @@ class WebhookClient {
 		});
 	}
 	
-	/* destroys the webhook by deleting it */
+	/**
+	* destroys the webhook by deleting it.
+	* this action cannot be undone.
+	* @returns {Promise}
+	*/
 	destroy() {
 		superagent
 		 .delete(`https://discordapp.com/api/v${Constants.API_VERSION}/webhooks/${this.ID}/${this.TOKEN}`)
 		 .catch(err => console.error(err));
 	}
+	
+	/**
+	* Changes webhook name.
+	* @param {String} name - The new name to use.
+	* @returns {Promise<void>}
+	*/
 	setName(name) {
 		return new Promise((resolve, reject) => {
 		superagent

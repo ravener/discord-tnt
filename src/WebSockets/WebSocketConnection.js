@@ -129,10 +129,15 @@ class WebSocketConnection extends EventEmitter {
 * @param {Number} interval - The interval in milliseconds to send heartbeat
 */
  heartbeat(interval) {
-	setInterval(() => {
+ 	if(!this.client.isConnected) return;
+	let x = setInterval(() => {
+		try {
 		this.send(Constants.GatewayOpCodes.HEARTBEAT, this.lastEvent);
 		this.lastHeartbeatSent = Date.now();
 		if(this.client.DEBUG) console.log(`[GATEWAY] [EVENT] Sending heartbeat at sequence ${this.lastEvent}`);
+	} catch(e) {
+		 clearInterval(x);
+	 }
 	}, interval - 2000); // send heartbeat 2 seconds earlier just incase.
 }
 

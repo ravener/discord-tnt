@@ -90,7 +90,7 @@ class Self {
   		since: Date.now(),
   		game: this.client.game ? {name: this.client.game, type: this.client.gameType} : null
   	});
-  	this.client.status = status.toLowerCase();
+  	this.client.STATUS = status.toLowerCase();
   	this.client.afk = Boolean(afk);
   }
 }

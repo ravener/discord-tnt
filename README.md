@@ -1,16 +1,16 @@
 # DiscordTNT
 Node.js Discord Library.
 Wrote using WS library for websocket connections and superagent library for http requests.
-soon to be improved.
-# Warning
-Lib is highly unstable and this readme links and things may not exist/work the readme is for future things. for now lib is under development, please open a pull request if you would like to contribute, this is mainly a practice and i can't gurantee a perfect lib but as i learn i'll be releasing new versions with Better things.
+under development.
+## Warning
+The Library is highly unstable for now library is under development, please open a pull request if you would like to contribute, this is mainly a practice and i can't gurantee a perfect library but as i learn i'll be releasing new versions with Better things.
 
 - Easy to use
 - Covers most of discord api , Not yet tho
-- Active developement
+- Active development
 - Free and open to contribute/suggest a feature.
 
-# Installation
+## Installation
 Run this in a command prompt in your project's directory
 ```
 npm i freetnt5852/discord-tnt --save
@@ -18,7 +18,7 @@ npm i freetnt5852/discord-tnt --save
 this requires you to have git.
 will be in npm later once confirmed to be stable.
 
-# Example usage
+## Example usage
 Here's a basic usage of the library:
 ```js
 const DiscordTNT = require("discord-tnt");
@@ -43,14 +43,26 @@ client.on('messageCreate', message => {
 client.connect();
 // log in the bot
 ```
+## Webhooks
+DiscordTNT Supports lightweight webhook usage without using a real bot token and authenticating stuff, here's an example usage of webhooks:
+```js
+const DiscordTNT = require("discord-tnt");
+const client = new DiscordTNT.WebhookClient({
+	TOKEN:"Webhook Token",
+	ID:"Webhook ID"
+});
 
+client.sendMessage("Hello, World!"); // send text message.
+client.setName("Cool Webhook"); // change name
+client.destroy(); // Deletes webhook forever, goodbye.
+```
 
-# Useful links
+## Useful links
 - [Documentation](https://freetnt5852.github.io/discord-tnt)
 - [Discord Server](https://discord.gg/CkY2dpr)
 - [More Examples](https://github.com/freetnt5852/discord-tnt/blob/master/examples)
 
-# License
+## License
 Released under MIT License.
 see [License](https://github.com/freetnt5852/discord-tnt/blob/master/LICENSE) file for more info
 
