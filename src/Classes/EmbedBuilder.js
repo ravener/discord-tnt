@@ -75,6 +75,7 @@ class EmbedBuilder {
   
   /**
   * Add a field, the field is then pushed to fields array.
+  * fields must not exceed 25 fields or an error is thrown.
   * @param {String} name - The field's name, must not exceed 256 characters or an error is thrown.
   * @param {String} value - The field's value, must not exceed 1024 Characters or an error is thrown.
   * @param {Boolean} inline=false - Wether the field must have an inline or not.
@@ -84,6 +85,7 @@ class EmbedBuilder {
   	if(typeof inline !== 'boolean') throw new TypeError("Inline can be a boolean only");
   	if(name.length > 256) throw new RangeError("Embed field values must not exceed 256 characters");
   	if(value.length > 1024) throw new RangeError("Embed field values must not exceed 1024 characters");
+  	if(this.fields.length > 25) throw new RangeError("Fields can only be upto 25 fields");
   	this.fields.push({name, value, inline});
   	return this;
   }

@@ -61,7 +61,7 @@ class WebSocketConnection extends EventEmitter {
 		try {
 		 this.ws = new WebSocket("wss://gateway.discord.gg?encoding=json&v=6");
 		 this.client.isConnected = true;
-		 this.client.ws = this.ws;
+		 this.client.ws = this;
 		 this.registerEventListeners();
 		 if(this.client.DEBUG) console.log("Connected to discord gateway");
 	} catch(e) {
@@ -121,6 +121,7 @@ class WebSocketConnection extends EventEmitter {
 * use heartbeat instead for setting an interval.
 */
   singleHeartbeat() {
+   this.lastHeartbeatSent = Date.now();
    this.send(Constants.GatewayOpCodes.HEARTBEAT, this.lastEvent);
 };
 
@@ -228,6 +229,7 @@ this.ws.on('message', gatewayMsg => {
   	this.sessionId = data.session_id;
   	if(this.client.DEBUG) console.log(`[GATEWAY] [EVENT] Ready session ID: ${data.session_id}`);
   	this.client.self = new Self(this.client, data);
+  	this.singleHeartbeat();
   	this.triggerReady();
   }
   if(op === 11) {
