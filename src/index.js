@@ -7,5 +7,5 @@ module.exports = {
 	   Snowflake: require("./utils/Snowflake.js"),
 	   Collection: require("./utils/Collection.js"),
 	   logger: require("./utils/Logger.js").Logger,
-	   Constants: require("./Constants.js");
+	   Constants: require("./Constants.js")
 };
