@@ -48,6 +48,12 @@ class WebSocketConnection extends EventEmitter {
 		* used for measuring websocket latency.
 		*/
 		this.lastHeartbeatAck = null;
+		
+		/**
+		* Wether the websocket is expecting to be closed.
+		* @type {Boolean}
+		*/
+		this.expectingClose = false;
 }
 	
 	/**
@@ -58,6 +64,7 @@ class WebSocketConnection extends EventEmitter {
 	*/
 	connect() {
 		if(this.client.isConnected) throw new Error("Attempt to connect while already connected.");
+		this.expectingClose = false;
 		try {
 		 this.ws = new WebSocket("wss://gateway.discord.gg?encoding=json&v=6");
 		 this.client.isConnected = true;
@@ -82,7 +89,7 @@ class WebSocketConnection extends EventEmitter {
 * An object that's used for identifying.
 * @returns {Object}
 */
- identify() {
+   identify() {
  	        return {
                 "token":this.client.TOKEN, 
                     'properties': {
@@ -266,6 +273,7 @@ this.ws.on('message', gatewayMsg => {
 });
 this.ws.on("close", (code, reason) => {
 	if(this.client.DEBUG) console.log(`[GATEWAY] [CLOSE] Code: ${code}, Reason: ${reason}.`);
+	if(this.expectingClose) return;
 	this.client.isConnected = false;
 	this.client.ws = null;
 	
@@ -310,6 +318,7 @@ this.ws.on("error", err => {
  * and ws to null.
  */
  disconnect() {
+ this.expectingClose = true;
  	this.ws.close();
  	this.client.isConnected = false;
  	this.client.ws = null;

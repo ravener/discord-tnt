@@ -5,5 +5,7 @@ module.exports = {
 	   WebhookClient: require("./WebhookClient.js"),
 	   EmbedBuilder: require("./Classes/EmbedBuilder.js"),
 	   Snowflake: require("./utils/Snowflake.js"),
-	   Collection: require("./utils/Collection.js")
+	   Collection: require("./utils/Collection.js"),
+	   logger: require("./utils/Logger.js").Logger,
+	   Constants: require("./Constants.js");
 };

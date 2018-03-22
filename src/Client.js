@@ -11,7 +11,7 @@ const RestMethods = require("./RestMethods.js");
 * @constructor
 * @param {Object} options - options for the client
 * @param {String} options.TOKEN - The bot's token
-* @param {String} options.GAME - The playing status for the bot
+* @param {String} options.GAME=null - The playing status for the bot.
 * @param {String} options.STATUS=online - Status for the bot can be online idle dnd offline invisible.
 * @param {Boolean} options.afk=false - Wether the client is afk or not.
 * @param {Number} options.type=0 - Type for game status.
@@ -50,7 +50,7 @@ class Client extends EventEmitter {
 		* The client's Rest instance. for doing easy requests.
 		* @type {RestMethods}
 		*/
-		this.rest = new RestMethods(this)
+		this.rest = new RestMethods(this);
 		
 		/**
 		* The websocket class, null if not connected.
@@ -145,11 +145,11 @@ class Client extends EventEmitter {
 * That connects the client and does the job.
 * @type {WebSocketConnection}
 */
-connect() {
-	if(this.isConnected) throw new Error("Attempt to connect while already connected.");
-	try {
-		this.ws = new WebSocket(this);
-	} catch(e) {
+  connect() {
+	  if(this.isConnected) throw new Error("Attempt to connect while already connected.");
+	  try {
+	    this.ws = new WebSocket(this);
+	 } catch(e) {
 		console.error(`[CLIENT] [ERROR] ${e.stack}`);
   	}
  }
@@ -164,7 +164,7 @@ connect() {
  }
  
  /**
- * Logs out the bot, disconnected the websocket connection.
+ * Logs out the bot, disconnects the websocket connection.
  */
  disconnect() {
  	this.ws.close();

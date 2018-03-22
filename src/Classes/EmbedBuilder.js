@@ -31,6 +31,15 @@ class EmbedBuilder {
 		* @type {Array}
 		*/
 		this.fields = embed.fields || [];
+		
+		/**
+		* The Embed Footer
+		* @type {Object}
+		*/
+		this.footer = {
+		  text: embed.footer.text,
+		  icon_url: embed.footer.iconURL
+		}
 	}
 
   /**
@@ -88,6 +97,18 @@ class EmbedBuilder {
   	if(this.fields.length > 25) throw new RangeError("Fields can only be upto 25 fields");
   	this.fields.push({name, value, inline});
   	return this;
+  }
+  
+  /**
+  * Sets the Embed footer.
+  * @param {String} text - The text for footer to set.
+  * @param {String} iconURL - Icon URL for footer. optional
+  * @returns {EmbedBuilder}
+  */
+  setFooter(text, iconURL) {
+    this.footer.text = text;
+    this.footer.icon_url = iconURL;
+    return this;
   }
   
 }

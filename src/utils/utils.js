@@ -1,3 +1,4 @@
+// Currently useless.
 
 /**
 * Some utility methods to help at some point.

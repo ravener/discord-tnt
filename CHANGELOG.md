@@ -1,3 +1,9 @@
+**v1.1.3**
+- Fix setPresence and setStatus for real now.
+- Fix WebSocket issue, now the heartbeat is never null, we send a small heartbeat upon connecting to calculate date instantly.
+- EmbedBuilder#setFooter(text, iconURL) is out, other fields to be added soon.
+- DiscordTNT.logger class added, what it does is log stuff in a colored style, this will be used by the library soon, it's also exprted so feel free to use it in your code too.
+
 **v1.1.2**
 - Fix websocket reconnection, hopefully now it truely handles disconnects, mostly the error with invalid session.
 - Fixed Client#self.setStatus (Hopefully)
@@ -5,7 +11,7 @@
 **v1.1.1**
 - Remove support for uWs it won't even connect properly for some reason.
 - Hopefully fixed Client#self.setPresence and setStatus.
-- Game and status is now optional from client options, can be set through Client#self.setPresence and Client#seld.setStatus
+- Game and status is now optional from client options, can be set through Client#self.setPresence and Client#self.setStatus
 - Improve examples to better fit the new versions.
 
 **v1.1.0**

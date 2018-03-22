@@ -30,10 +30,7 @@ client.on("messageCreate", message => { // on message
 	// it more comfortable to send Messages.
 	// an update is planned to make it even more comfortable.
 	if(command === "ping") {
-		client.sendMessage(`Pong! WebSocket Latency: ${client.ping}`); // client.ping is null at first time login
-		// so don't panic if it didn't work, will work after
-		// 40 seconds of login or something
-		// an improvement is planned for this.
+		client.sendMessage(`Pong! WebSocket Latency: ${client.ping}`);
 	} else if(command === "eval") {
 		const code = args.join(" ");
 		try {
