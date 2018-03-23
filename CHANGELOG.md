@@ -1,3 +1,8 @@
+**v1.1.4**
+- Fix setPresence and setStatus FOR ACTUALLY REAL NOW.
+- Fix Logger class exporting.
+
+
 **v1.1.3**
 - Fix setPresence and setStatus for real now.
 - Fix WebSocket issue, now the heartbeat is never null, we send a small heartbeat upon connecting to calculate date instantly.

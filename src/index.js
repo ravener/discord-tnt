@@ -6,6 +6,6 @@ module.exports = {
 	   EmbedBuilder: require("./Classes/EmbedBuilder.js"),
 	   Snowflake: require("./utils/Snowflake.js"),
 	   Collection: require("./utils/Collection.js"),
-	   logger: require("./utils/Logger.js").Logger,
+	   logger: require("./utils/Logger.js"),
 	   Constants: require("./Constants.js")
 };

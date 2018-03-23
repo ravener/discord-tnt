@@ -43,11 +43,10 @@ class Self {
 		this.id = data.user.id;
 		
 		/**
-		* The bot's avatar hash.
+		* The bot's avatar hash, null if don't have one.
 		* @type {String}
 		*/
 		this.avatar = data.user.avatar || null;
-		// possible chance the bot doesn't have an avatar.
 		
 		/**
 		* The bot's avatar URL.
@@ -88,7 +87,7 @@ class Self {
   		status:status.toLowerCase(),
   		afk: Boolean(afk),
   		since: Date.now(),
-  		game: this.client.game ? {name: this.client.game, type: this.client.gameType} : null
+  		game: this.client.game ? {name: this.client.GAME, type: this.client.gameType} : null
   	});
   	this.client.STATUS = status.toLowerCase();
   	this.client.afk = Boolean(afk);
