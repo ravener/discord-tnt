@@ -7,7 +7,7 @@ const Collection = require("./utils/Collection.js");
 const RestMethods = require("./RestMethods.js");
 
 /**
-* Client class Main class for making a discord instance
+* Client class Main class for making a discord client instance.
 * @constructor
 * @param {Object} options - options for the client
 * @param {String} options.TOKEN - The bot's token
