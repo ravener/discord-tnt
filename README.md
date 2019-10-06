@@ -1,5 +1,5 @@
 # NOTE
-This library is discontinued, it was just me playing around, this days i found way better ways to do this things, a new rewrite is in progress but there's no ETA yet.
+This library is discontinued as this project was just me playing around. These days I found better ways to do this. Therefore, a new rewrite is in progress but there's no ETA yet.
 
 # DiscordTNT
 Node.js Discord Library.
@@ -7,7 +7,7 @@ Wrote using WS library for websocket connections and superagent library for http
 under development.
 
 ## Warning
-The Library is highly unstable for now library is under development, please open a pull request if you would like to contribute, this is mainly a practice and i can't gurantee a perfect library but as i learn i'll be releasing new versions with Better things.
+The Library is highly unstable for now library is under development, please open a pull request if you would like to contribute, this is mainly a practice and I can't gurantee a perfect library but as I learn I'll be releasing new versions with better things.
 
 - Easy to use
 - Covers most of discord api , Not yet tho
