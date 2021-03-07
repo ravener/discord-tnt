@@ -1,5 +1,7 @@
 # NOTE
-This library is discontinued as this project was just me playing around. These days I found better ways to do this. Therefore, a new rewrite is in progress but there's no ETA yet.
+This library is discontinued as this project was just me playing around.
+
+It was made in the early days of my JavaScript to practice and learn about the Discord API. It is archived now, it may be a good starting point for some other interested users but use at your own risk, the code quality is terrible and all since as I said I made it when I was fairly new to JavaScript.
 
 # DiscordTNT
 Node.js Discord Library.
